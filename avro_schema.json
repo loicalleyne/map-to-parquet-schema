@@ -1,0 +1,223 @@
+{
+    "name": "log_record",
+    "type": "record",
+    "fields": [
+        {
+            "name": "request",
+            "type": {
+                "type": "record",
+                "name": "request_data",
+                "fields": [
+                    {
+                        "name": "datetime",
+                        "type": "string"
+                    },
+                    {
+                        "name": "ip",
+                        "type": "string"
+                    },
+                    {
+                        "name": "host",
+                        "type": "string"
+                    },
+                    {
+                        "name": "uri",
+                        "type": "string"
+                    },
+                    {
+                        "name": "request_uri",
+                        "type": "string"
+                    },
+                    {
+                        "name": "referer",
+                        "type": "string"
+                    },
+                    {
+                        "name": "useragent",
+                        "type": "string"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "incoming_request",
+            "type": {
+                "name": "IncomingRequest",
+                "type": "record",
+                "fields": [
+                    {
+                        "name": "id",
+                        "type": "string"
+                    },
+                    {
+                        "name": "external_id",
+                        "type": [
+                            "null",
+                            "string"
+                        ]
+                    },
+                    {
+                        "name": "direct_connection",
+                        "type": [
+                            "null",
+                            "boolean"
+                        ]
+                    },
+                    {
+                        "name": "remote_ip",
+                        "type": [
+                            "null",
+                            "string"
+                        ]
+                    },
+                    {
+                        "name": "is_multi_ad_request",
+                        "type": [
+                            "null",
+                            "boolean"
+                        ]
+                    },
+                    {
+                        "name": "multi_ad_requests_count_fraction",
+                        "type": [
+                            "null",
+                            "double"
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "name": "geo",
+            "type": {
+                "name": "Geo",
+                "type": "record",
+                "fields": [
+                    {
+                        "name": "ip",
+                        "type": [
+                            "null",
+                            "string"
+                        ]
+                    },
+                    {
+                        "name": "country",
+                        "type": [
+                            "null",
+                            "string"
+                        ]
+                    },
+                    {
+                        "name": "region",
+                        "type": [
+                            "null",
+                            "string"
+                        ]
+                    },
+                    {
+                        "name": "city",
+                        "type": [
+                            "null",
+                            "string"
+                        ]
+                    },
+                    {
+                        "name": "dma",
+                        "type": [
+                            "null",
+                            "int"
+                        ]
+                    },
+                    {
+                        "name": "zip",
+                        "type": [
+                            "null",
+                            "string"
+                        ]
+                    },
+                    {
+                        "name": "latitude",
+                        "type": [
+                            "null",
+                            "float"
+                        ]
+                    },
+                    {
+                        "name": "longitude",
+                        "type": [
+                            "null",
+                            "float"
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "name": "schedule",
+            "type": [
+                "null",
+                {
+                    "name": "Schedule",
+                    "type": "record",
+                    "fields": [
+                        {
+                            "name": "id",
+                            "type": "int"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "exception",
+            "type": [
+                "null",
+                {
+                    "name": "Exception",
+                    "type": "record",
+                    "fields": [
+                        {
+                            "name": "reason",
+                            "type": "string"
+                        },
+                        {
+                            "name": "is_emergency",
+                            "type": "boolean"
+                        },
+                        {
+                            "name": "person",
+                            "type": "record",
+                            "fields": [
+                                {"name": "firstname", "type": "string"},
+                                {"name": "lastname", "type": "string"},
+                                {
+                                    "name": "address",
+                                    "type": {
+                                                "type" : "record",
+                                                "name" : "AddressUSRecord",
+                                                "fields" : [
+                                                    {"name": "streetaddress", "type": "string"},
+                                                    {"name": "city", "type": "string"}
+                                                ]
+                                            }
+                                },
+                                {"name":"mapfield", "type":{
+                                                                "type": "map",
+                                                                "values" : "long",
+                                                                "default": {}
+                                                            }
+                                                        },
+                                {"name":"arrayField", "type":{
+                                                                "type": "array",
+                                                                "items" : "string",
+                                                                "default": []
+                                                            }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
